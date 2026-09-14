@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>구독 보관함</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <div>
+        <p class="eyebrow">SUBSCRIPTION CONTROL ROOM</p>
+        <h1>구독 보관함</h1>
+        <p class="intro">매달 빠져나가는 돈을 한눈에 보고, 다음 결제일을 놓치지 않게 관리하세요.</p>
+      </div>
+      <div class="today-badge">
+        <span>오늘</span>
+        <strong id="todayLabel">-</strong>
+      </div>
+    </header>
+
+    <main>
+      <section class="summary-grid" aria-label="지출 요약">
+        <article class="summary-card summary-primary">
+          <span class="summary-label">월 합계</span>
+          <strong id="monthlyTotal">0원</strong>
+          <span class="summary-note">월 기준 환산</span>
+        </article>
+        <article class="summary-card">
+          <span class="summary-label">연간 합계</span>
+          <strong id="yearlyTotal">0원</strong>
+          <span class="summary-note">예상 지출</span>
+        </article>
+        <article class="summary-card">
+          <span class="summary-label">이번 주 결제 예정</span>
+          <strong id="upcomingTotal">0건</strong>
+          <span class="summary-note" id="upcomingNote">앞으로 7일</span>
+        </article>
+      </section>
+
+      <div class="content-grid">
+        <section class="panel subscriptions-panel">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">YOUR SERVICES</p>
+              <h2>구독 목록 <span id="subscriptionCount">0</span></h2>
+            </div>
+            <button class="text-button" id="focusFormButton" type="button">+ 새 구독</button>
+          </div>
+          <div class="subscription-list" id="subscriptionList"></div>
+        </section>
+
+        <aside class="side-column">
+          <section class="panel form-panel" id="formPanel">
+            <div class="section-heading compact">
+              <div>
+                <p class="eyebrow">ADD SERVICE</p>
+                <h2 id="formTitle">새 구독 추가</h2>
+              </div>
+            </div>
+            <form id="subscriptionForm">
+              <input type="hidden" id="subscriptionId" name="subscriptionId">
+              <label>
+                서비스 이름
+                <input id="name" name="name" type="text" placeholder="예: 넷플릭스" required maxlength="40">
+              </label>
+              <div class="form-row">
+                <label>
+                  금액
+                  <input id="amount" name="amount" type="number" min="0" step="1" placeholder="13500" required>
+                </label>
+                <label>
+                  결제 주기
+                  <select id="cycle" name="cycle">
+                    <option value="monthly">매월</option>
+                    <option value="yearly">매년</option>
+                  </select>
+                </label>
+              </div>
+              <label>
+                다음 결제일
+                <input id="nextPaymentDate" name="nextPaymentDate" type="date" required>
+              </label>
+              <div class="form-row">
+                <label>
+                  카테고리
+                  <input id="category" name="category" type="text" placeholder="영상" required maxlength="20">
+                </label>
+                <label>
+                  결제 수단 <span class="optional">선택</span>
+                  <input id="paymentMethod" name="paymentMethod" type="text" placeholder="카드/계좌" maxlength="20">
+                </label>
+              </div>
+              <div class="form-actions">
+                <button class="primary-button" type="submit" id="submitButton">구독 저장</button>
+                <button class="cancel-button" type="button" id="cancelEditButton" hidden>취소</button>
+              </div>
+            </form>
+          </section>
+
+          <section class="panel category-panel">
+            <div class="section-heading compact">
+              <div>
+                <p class="eyebrow">MONTHLY MIX</p>
+                <h2>카테고리별 비중</h2>
+              </div>
+            </div>
+            <div class="category-list" id="categoryList"></div>
+          </section>
+        </aside>
+      </div>
+    </main>
+    <footer>브라우저에 안전하게 저장됩니다 · 외부 전송 없음</footer>
+  </div>
+  <script src="logic.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
